@@ -13,10 +13,10 @@ import axios from "axios";
 interface propType {
     data: BookType,
     setToggle: (val: boolean) => void
- 
+
 }
 export default function BookDetails({ data, setToggle }: propType) {
-  
+
     const { MemberState, CatalogState, setCatalogState, BookState, setBookState } = useContext(GlobalContext)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedValue, setSelectedValue] = useState<MemberType | null>(null);
@@ -25,10 +25,10 @@ export default function BookDetails({ data, setToggle }: propType) {
         try {
             const index = CatalogState.findIndex((book: CatalogType) => book.bookId === data.id)
             if (CatalogState[index].availableCopies > 0) {
-              
+
                 const newCatalog = { ...CatalogState[index], availableCopies: CatalogState[index].availableCopies - 1 }
                 const res = await SendRequest.EditData("catalogs", CatalogState[index].id, newCatalog)
-                if (res){
+                if (res) {
                     const date = new Date()
                     const trans = {
                         id: "T" + date.getMinutes() + date.getDay() + date.getFullYear(),
@@ -37,15 +37,15 @@ export default function BookDetails({ data, setToggle }: propType) {
                         borrowedDate: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay(),
                         returnedDate: "N/A"
                     }
-                    const res = await  SendRequest.PostData("transactions", trans)
-                    if(res){
-                        const newCataloggg = [...CatalogState, CatalogState[index]= newCatalog]
+                    const res = await SendRequest.PostData("transactions", trans)
+                    if (res) {
+                        const newCataloggg = [...CatalogState, CatalogState[index] = newCatalog]
                         setCatalogState(newCataloggg)
-                    Alert.alert("you got a copy")
-             
+                        Alert.alert("you got a copy")
+
+                    }
                 }
-                }
-                else{
+                else {
                     Alert.alert('Operation failed!')
                     alert('Operation failed!')
                 }
@@ -61,7 +61,7 @@ export default function BookDetails({ data, setToggle }: propType) {
 
 
     const BorrowOrReturn = async (text: string) => {
-        
+
         setModalVisible(!modalVisible)
         if (text === 'borrow') {
             // Alert.alert("Borrow")
@@ -79,7 +79,7 @@ export default function BookDetails({ data, setToggle }: propType) {
 
 
     const Delete = async () => {
-      
+
         const res = await SendRequest.deleteData("books", data.id)
         if (res) {
             const newStateBook = BookState.filter(i => i.id !== data.id)
@@ -207,26 +207,26 @@ export default function BookDetails({ data, setToggle }: propType) {
 
                     ))}
                 </View>
+                <View>
+                    <View style={styles.rowButton}>
 
-                <View style={styles.rowButton}>
-
-                    <Pressable onPress={() => BorrowOrReturn("borrow")}>
-                        <MaterialCommunityIcons color="#ffa500" size={24} name="book-minus" />
-                        <Text style={styles.DetailText}>Borrow</Text>
-                    </Pressable>
+                        <Pressable onPress={() => BorrowOrReturn("borrow")}>
+                            <MaterialCommunityIcons color="#ffa500" size={24} name="book-minus" />
+                            <Text style={styles.DetailText}>Borrow</Text>
+                        </Pressable>
 
 
 
-                    <Pressable onPress={ToEdit}>
-                        <MaterialCommunityIcons color="#98fb98" size={24} name="book-edit" />
-                        <Text style={styles.DetailText}>Edit</Text>
-                    </Pressable>
+                        <Pressable onPress={ToEdit}>
+                            <MaterialCommunityIcons color="#98fb98" size={24} name="book-edit" />
+                            <Text style={styles.DetailText}>Edit</Text>
+                        </Pressable>
 
-                    <Pressable onPress={onDeleteCourse}>
-                        <MaterialCommunityIcons color="red" size={24} name="delete" />
-                        <Text style={styles.DetailText}>Delete</Text>
-                    </Pressable>
-
+                        <Pressable onPress={onDeleteCourse}>
+                            <MaterialCommunityIcons color="red" size={24} name="delete" />
+                            <Text style={styles.DetailText}>Delete</Text>
+                        </Pressable>
+                    </View>
                 </View>
 
 

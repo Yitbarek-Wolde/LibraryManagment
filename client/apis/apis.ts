@@ -2,7 +2,7 @@ import axios from "axios"
 import { Alert } from "react-native"
 
 class ServerRequest {
-    private url: string = 'http://172.17.109.179:3000/'
+    private url: string = 'http://10.200.10.2:3000/'
 
     public getData = async (resource: string) => {
         try {

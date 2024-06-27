@@ -74,8 +74,8 @@ export default function PublisersDisplay({ data }: propType) {
                         <Text style={styles.TextHeadline}>{data.address}</Text>
                     </View>
                 </View>
-                {toggle && <View style={[styles.rowButton, {justifyContent: "space-evenly"}]}>
-
+                <View>
+                {toggle && <View style={[styles.rowButton, {justifyContent: "space-around"}]}>
 
                     <Pressable onPress={ToEdit}>
                         <MaterialCommunityIcons color="#98fb98" size={24} name="account-edit-outline" />
@@ -87,7 +87,7 @@ export default function PublisersDisplay({ data }: propType) {
                         <Text style={styles.DetailText}>Delete</Text>
                     </Pressable>
 
-                </View>}
+                </View>}</View>
             </View>
         </Pressable>
     )

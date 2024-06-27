@@ -10,14 +10,6 @@
         "A002"
       ],
       "publisherId": "P001"
-    },
-    {
-      "id": "B002",
-      "title": "The Art of Programming",
-      "genre": "Technology",
-      "category": "Programming",
-      "authorIDs": ["A003"],
-      "publisherId": "P002"
     }
   ],
   "authors": [
@@ -59,15 +51,9 @@
   "catalogs": [
     {
       "id": "C001",
-      "bookId": "B001",
+      "bookId": "",
       "numberOfCopies": 10,
-      "availableCopies": 7
-    },
-    {
-      "id": "C002",
-      "bookId": "B002",
-      "numberOfCopies": 5,
-      "availableCopies": 5
+      "availableCopies": 6
     }
   ],
   "members": [
@@ -107,7 +93,7 @@
   "users": [
     {
       "id": "U001",
-      "name": "Yitbarek",
+      "name": "Peter",
       "email": "yit"
     }
   ]
